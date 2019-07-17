@@ -1,0 +1,135 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+        <ion-text color="light">
+          <ion-text color="light" class="fw700">Accueil</ion-text>
+        </ion-text>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="medium" (click)="notifications()">
+        <ion-icon name="notifications"></ion-icon>
+        <ion-badge color="dark" slot="end">{{listeClientsFilter.length}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar color="dark">
+    <ion-searchbar [(ngModel)]="terms" ></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="medium" (click)="sort()">
+        <ion-icon name="options"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card no-margin class="no-radius">
+    <ion-item lines="none" color="medium">
+      <ion-label>
+        <h2 no-margin class="fw500 no-margin">
+          <ion-text color="dark">Tous les clients</ion-text>
+        </h2>
+
+        <p class="text-11x no-margin">
+          <ion-text  color="primary">Compte collecte</ion-text>
+        </p>
+      </ion-label>
+      <ion-button shape="round" fill="outline" size="small" color="primary" (click)="ngOnInit()" >
+        
+        <ion-icon name="person-add"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="bg-white">
+<!--
+    <ion-img [src]="themeCover"></ion-img>
+    
+    <ion-button expand="full" color="dark" (click)="presentImage(themeCover)" no-margin>
+      Modal 1: Modal Image
+    </ion-button>
+    -->
+    <ion-list>
+        <ion-list-header>
+          clients sarky 
+        </ion-list-header>
+
+<ion-item *ngFor="let item of listeClientsFilter | search : terms | sort: {property: column, order: order}">
+
+  <ion-label class="primary" style="margin: 4px;">
+    <ion-avatar  style="margin: 0px;">
+      <img src="../../assets/img/user.png">
+    </ion-avatar> 
+    <h2 color="dark">{{item.client.nom}}  {{item.client.prenom}}</h2>
+    <b>
+    <p >
+      <ion-text class="text-11x no-margin" color="dark" > Né le : </ion-text>{{item.client.dateDeNaissance | date : 'dd / MM / yyyy '}} à {{item.lieuDeNaissance}}
+    </p>
+   <p><a class="text-11x no-margin" color="primary">Numéro de compte :</a> C0{{item.id}}00</p>
+    <p><a class="text-11x no-margin" color="primary"> Profession :</a> {{item.client.profession}}</p>
+    <p><a class="text-11x no-margin" color="primary"> Résident à </a> {{item.client.residence}}</p>
+    <p> <a class="text-11x no-margin" color="primary"> Téléphone : </a> {{item.client.telephone}}</p>
+    <p><a class="text-11x no-margin" color="primary">Numéro de cni :</a> {{item.client.numcni}}</p>
+  </b>
+  <ion-chip (click)="seeHistory(item)" style="width: 100%;" >
+      <ion-icon name="filing" color="primary"></ion-icon>
+      Solde :<ion-label color="primary"> {{item.solde | number:'1.0'  }} FCFA</ion-label>
+  </ion-chip>
+  <br>
+
+  <ion-button style="width: 100%" shape="round" fill="outline" size="small" color="primary" (click)="collecter(item)">
+      Collecte
+      <ion-icon name="hand"></ion-icon>
+    </ion-button>
+
+    <br>
+  <ion-button style="width: 100%" shape="round" fill="outline" size="small" color="primary" (click)="retrait(item)">
+      Retrait
+      <ion-icon name="open"></ion-icon>
+    </ion-button>
+
+  </ion-label>
+
+</ion-item>
+
+          
+</ion-list>
+    
+
+<img [src]=base64img class="square" *ngIf="base64img!=''">
+<div class="square" *ngIf="base64img==''">
+  <button class="camera-circle" ion-button style="margin-top:427px;z-index:20" (click)="imageCapturedGallery()">
+    <ion-icon name="images" style="color:#000 !important"></ion-icon>
+  </button>
+  <button class="camera-circle" ion-button style="margin-top:427px;z-index:20" (click)="imageCaptured()">
+    <ion-icon name="camera" style="color:#000 !important"></ion-icon>
+  </button>
+</div>
+
+<div class="button-row">
+  <button class="zoom" ion-button icon-only style="margin-right:25%;float: left;" (click)="clear()">
+    <ion-icon class="zoom-btn" name="close"></ion-icon>
+  </button>
+  <button class="zoom" ion-button icon-only style="margin-left:25%;float: right;" (click)="nextPage()"
+    *ngIf="base64img!=''">
+    <ion-icon class="zoom-btn" name="arrow-forward"></ion-icon>
+  </button>
+</div>
+
+
+  </ion-card>
+<!--
+  <ion-button margin shape="round" expand="full" color="secondary" (click)="searchFilter()">
+    Modal 2: Search Filter
+  </ion-button>
+  
+  <popmenu></popmenu>
+
+-->
+
+  
+</ion-content>
+  

@@ -1,0 +1,13 @@
+<ion-header no-border>
+  <ion-toolbar color="transparent">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content-color" padding>
+  <img [src]='base64img' class="circle" *ngIf="base64img!=''">
+  <div class="circle" *ngIf="base64img==''">
+
+  </div>
+  <button  ion-button class="submit-btn" full (click)="uploadPhoto()">Identify Photo
+  </button>
+</ion-content>

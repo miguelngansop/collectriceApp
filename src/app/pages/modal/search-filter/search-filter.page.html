@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-button color="primary" (click)="closeModal()">
+            <ion-icon name="close" color="light"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-title>
+    	Historique des opérations
+    </ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar *ngIf="cpt" color="dark"  >
+	<ion-buttons slot="start" >
+	  <ion-back-button></ion-back-button>
+	</ion-buttons>
+	<ion-title>{{cpt.client.nom}} {{cpt.client.prenom}}</ion-title>
+  </ion-toolbar>
+
+
+  <ion-toolbar color="dark" style="margin-bottom:4px;" >
+	<ion-searchbar 
+	[(ngModel)]="searchTerm" 
+    (ionInput)="setFilteredHistory($event)">
+</ion-searchbar>
+</ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding margin>
+
+	
+	<ion-list>
+	
+  <ion-card color="dark" padding *ngFor="let his of filterData">
+	date: {{his.createdAt | date : 'dd/MM/yyyy HH:mm:ss'}} <br>
+	opération : {{his.type}} <br>
+	montant : {{his.montant}} FCFA
+  </ion-card>
+</ion-list>
+
+
+
+	<ion-button expand="full" color="primary" (click)="closeModal()">Fermer</ion-button>
+</ion-content>

@@ -1,0 +1,209 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nouveau compte</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!--
+  <div class="bg-profile" text-center padding>
+    <img src="assets/img/ionic4start-ico.png">
+  </div>
+  -->
+
+  <ion-card class="bg-white" margin>
+    <ion-card-content>
+        <!-- Register form -->
+    <form [formGroup]="onRegisterForm" class="list-form">
+
+        <ion-item no-padding class="animated fadeInUp">
+          <ion-label position="floating">
+            <ion-icon name="person" item-start></ion-icon>
+            Nom du client
+          </ion-label>
+          <ion-input color="secondary" type="text" formControlName="nom"></ion-input>
+        </ion-item>
+        <p ion-text class="text08" *ngIf="onRegisterForm.get('nom').touched && onRegisterForm.get('nom').hasError('required')">
+          <ion-text color="warning">
+            Ce champ est obligatoire
+          </ion-text>
+        </p>
+  
+        <ion-item no-padding class="animated fadeInUp">
+          <ion-label position="floating">
+            <ion-icon name="person" item-start></ion-icon>
+            Prenom
+          </ion-label>
+          <ion-input color="secondary" type="text" formControlName="prenom"></ion-input>
+        </ion-item>
+        <p ion-text class="text08" *ngIf="onRegisterForm.get('prenom').touched && onRegisterForm.get('prenom').hasError('required')">
+          <ion-text color="warning">
+              Ce champ est obligatoire
+          </ion-text>
+        </p>
+  
+        <ion-item no-padding class="animated fadeInUp">
+          <ion-label position="floating">
+            <ion-icon name="calendar" item-start></ion-icon>
+            Date de naissance
+          </ion-label>
+          <ion-input color="secondary" type="date" formControlName="dateDeNaissance"></ion-input>
+        </ion-item>
+        <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('dateDeNaissance').touched && onRegisterForm.get('dateDeNaissance').hasError('required')">
+          <ion-text color="warning">
+              Ce champ est obligatoire
+          </ion-text>
+        </p>
+
+         
+        <ion-item no-padding class="animated fadeInUp">
+            <ion-label position="floating">
+              <ion-icon name="person" item-start></ion-icon>
+              Nom de la mère
+            </ion-label>
+            <ion-input color="secondary" type="text" formControlName="nomDeLaMere"></ion-input>
+          </ion-item>
+          <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('nomDeLaMere').touched && onRegisterForm.get('nomDeLaMere').hasError('required')">
+            <ion-text color="warning">
+                Ce champ est obligatoire
+            </ion-text>
+          </p>
+
+          <ion-item no-padding class="animated fadeInUp">
+              <ion-label position="floating">
+                <ion-icon name="person" item-start></ion-icon>
+                Nom du pere
+              </ion-label>
+              <ion-input color="secondary" type="text" formControlName="nomDuPere"></ion-input>
+            </ion-item>
+            <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('nomDuPere').touched && onRegisterForm.get('nomDuPere').hasError('required')">
+              <ion-text color="warning">
+                  Ce champ est obligatoire
+              </ion-text>
+            </p>
+  
+
+        <ion-item no-padding class="animated fadeInUp">
+            <ion-label position="floating">
+              <ion-icon name="card" item-start></ion-icon>
+              Numéro de CNI
+            </ion-label>
+            <ion-input color="secondary" type="number" formControlName="numcni"></ion-input>
+          </ion-item>
+          <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('numcni').touched && onRegisterForm.get('numcni').hasError('required')">
+            <ion-text color="warning">
+                Ce champ est obligatoire
+            </ion-text>
+          </p>
+
+          <ion-item no-padding class="animated fadeInUp">
+              <ion-label position="floating">
+                <ion-icon name="checkmark" item-start></ion-icon>
+                Profession
+              </ion-label>
+              <ion-input color="secondary" type="text" formControlName="profession"></ion-input>
+            </ion-item>
+            <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('profession').touched && onRegisterForm.get('profession').hasError('required')">
+              <ion-text color="warning">
+                  Ce champ est obligatoire
+              </ion-text>
+            </p>
+          
+            <ion-item no-padding class="animated fadeInUp">
+                <ion-label position="floating">
+                  <ion-icon name="home" item-start></ion-icon>
+                  Résidence
+                </ion-label>
+                <ion-input color="secondary" type="text" formControlName="residence"></ion-input>
+              </ion-item>
+              <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('residence').touched && onRegisterForm.get('residence').hasError('required')">
+                <ion-text color="warning">
+                    Ce champ est obligatoire
+                </ion-text>
+              </p>
+          
+        <ion-item no-padding class="animated fadeInUp">
+            <ion-label position="floating">
+              <ion-icon name="card" item-start></ion-icon>
+              Passport (?)
+            </ion-label>
+            <ion-input color="secondary" type="text" formControlName="passport"></ion-input>
+          </ion-item>
+          <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('passport').touched && onRegisterForm.get('passport').hasError('required')">
+            <ion-text color="warning">
+                Ce champ est obligatoire
+            </ion-text>
+          </p>
+
+          <ion-item no-padding class="animated fadeInUp">
+              <ion-label position="floating">
+                <ion-icon name="card" item-start></ion-icon>
+                Carte de séjour (?)
+              </ion-label>
+              <ion-input color="secondary" type="text" formControlName="cartedesejour"></ion-input>
+            </ion-item>
+            <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('cartedesejour').touched && onRegisterForm.get('cartedesejour').hasError('required')">
+              <ion-text color="warning">
+                  Ce champ est obligatoire
+              </ion-text>
+            </p>
+
+        <ion-item no-padding class="animated fadeInUp">
+            <ion-label position="floating">
+              <ion-icon name="call" item-start></ion-icon>
+              Numéro de téléphone
+            </ion-label>
+            <ion-input color="secondary" type="number" formControlName="telephone"></ion-input>
+          </ion-item>
+          <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('telephone').touched && onRegisterForm.get('telephone').hasError('required')">
+            <ion-text color="warning">
+                Ce champ est obligatoire
+            </ion-text>
+          </p>
+
+          <ion-item no-padding class="animated fadeInUp">
+              <ion-label position="floating">
+                <ion-icon name="mail" item-start></ion-icon>
+                Adresse Email
+              </ion-label>
+              <ion-input color="secondary" type="email" formControlName="email"></ion-input>
+            </ion-item>
+            <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('email').touched && onRegisterForm.get('email').hasError('required')">
+              <ion-text color="warning">
+                  Ce champ est obligatoire
+              </ion-text>
+            </p>
+        
+      </form>
+  
+      
+      <ion-item no-padding class="animated fadeInUp">
+          <ion-label position="floating">
+            <ion-icon name="cash" item-start></ion-icon>
+            Montant Initial
+          </ion-label>
+          <ion-input color="secondary" type="number" [(ngModel)]="montant_initial_de_creation"></ion-input>
+        </ion-item>
+        <p ion-text color="warning" class="text08" *ngIf="montant_initial_de_creation == null">
+          <ion-text color="warning">
+              Ce champ est obligatoire
+          </ion-text>
+        </p>
+
+      <div margin-top>
+          <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="createAccount()" [disabled]="!onRegisterForm.valid"
+            tappable>
+            <ion-icon name="log-in"></ion-icon>
+            Créer un compte
+          </ion-button>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>
+
