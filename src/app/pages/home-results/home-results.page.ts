@@ -34,6 +34,8 @@ export class HomeResultsPage implements OnInit {
   order: number;
   column: string = 'id';
 
+  myPhoto : any;
+
   ngOnInit(){
     this.serviceClient.getAll().subscribe((list:any)=>{
       this.listeClients = list;
@@ -241,13 +243,14 @@ sort(){
 
   imageCaptured(){
     const options:CameraOptions={
-      quality:70,
-      destinationType:this.camera.DestinationType.DATA_URL,
+      quality:90,
+      destinationType:this.camera.DestinationType.FILE_URI,
       encodingType:this.camera.EncodingType.JPEG,
       mediaType:this.camera.MediaType.PICTURE
     }
     this.camera.getPicture(options).then((ImageData=>{
-       this.base64img="data:image/jpeg;base64,"+ImageData;
+      //  this.base64img="data:image/jpeg;base64,"+ImageData;
+       this.myPhoto = this.convertFileSrc(ImageData);
        this.serviceClient.setphoto(ImageData);
 
     }),error=>{
@@ -271,8 +274,8 @@ sort(){
   }
 
   nextPage(){
-   this.serviceClient.setImage(this.base64img);
-   this.serviceClient.setphoto(ImageData);
+   this.serviceClient.setImage(this.myPhoto);
+  //  this.serviceClient.setphoto(ImageData);
    this.nav.navigateRoot('/identifyphoto');
   }
 
@@ -280,6 +283,21 @@ sort(){
     this.base64img='';
   }
 
-  
+  private convertFileSrc(url: string): string {
+    if (!url) {
+      return url;
+    }
+    if (url.startsWith('/')) {
+      return window['WEBVIEW_SERVER_URL'] + '/_app_file_' + url;
+    }
+    if (url.startsWith('file://')) {
+      return window['WEBVIEW_SERVER_URL'] + url.replace('file://', '/_app_file_');
+    }
+    if (url.startsWith('content://')) {
+      return window['WEBVIEW_SERVER_URL'] + url.replace('content:/', '/_app_content_');
+    }
+    return url;
+  }
 
+  
 }

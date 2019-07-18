@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ClientService {
   
-  private host:string="http://192.168.1.94:8080/";
+  private host:string="http://192.168.1.137:8080/";
   private urlForSaveClient = this.host + "apiclient/client";
   private urlGetAll = this.host + "apiCompteCollecte/comptes";
   private urlForUpdate = this.host + "apiclient/client/";
@@ -78,6 +78,9 @@ export class ClientService {
           'enctype': 'multipart/form-data; boundary=----WebKitFormBoundaryuL67FWkv1CA'
       })
   };
-    return this.http.post(this.urlForUpload, form ,httpOptions);
+
+  const formData : FormData = new FormData();
+  formData.append('file',form.file);
+    return this.http.post(this.urlForUpload, form);
   }
 }
